@@ -21,7 +21,7 @@ export class PlayerComponent {
       this.level = 0;
       this.storage.setLocalStorageItem('level', this.level.toString());
     }
-    for (let i = 1 ; i <= this.level + 4; i++) {
+    for (let i = 1; i <= 4; i++) {
       this.arr.push(i);
     }
   }
@@ -34,7 +34,7 @@ export class PlayerComponent {
     if (type === 'try') {
       this.isTryAgain = true;
     }
-    this.arr = this.shuffle(this.arr);
+    this.arr = this.shuffle(this.arr, 3);
     this.currentValue = this.arr[0];
     this.interval = setInterval(() => {
       const index = this.arr.indexOf(this.currentValue);
@@ -54,8 +54,8 @@ export class PlayerComponent {
     this.gameStarted(ev);
   }
 
-  shuffle(a) {
-    for (let i = a.length - 1; i > 0; i--) {
+  shuffle(a, lengthOfRandomArray) {
+    for (let i = lengthOfRandomArray; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [a[i], a[j]] = [a[j], a[i]];
     }
@@ -72,8 +72,8 @@ export class PlayerComponent {
     }
     if (ev.toString() === this.arr.join('')) {
       alert('Level ' + this.level + ' completed successfully');
-      this.arr.push(this.arr.length + 1);
       this.level = this.level + 1;
+      // this.arr.push(this.level % 4);
     } else {
       this.router.navigate(['status', 2]);
       this.level = 0;

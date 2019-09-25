@@ -7,9 +7,10 @@ export class MoveNextByMaxLengthDirective {
 
   constructor() { }
 
-  @HostListener('keyup', ['$event']) onkeyup(ev: KeyboardEvent) {
+  @HostListener('keyup', ['$event']) onkeyup(ev) {
     ev.preventDefault();
     if (ev.keyCode === 8) {
+
       let previousControl: any = ev.srcElement.previousElementSibling;
       while (true) {
         if (previousControl) {
