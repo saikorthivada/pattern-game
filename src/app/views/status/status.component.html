@@ -1,0 +1,7 @@
+<div class="card text-center container-fluid m-t-60" style="width: 18rem;">
+    <div class="card-body">
+        <h5 class="text-success" *ngIf="isSuccess">You have successfully completed the game</h5>
+        <h5 class="text-danger" *ngIf="!isSuccess">You have lost the game</h5>
+        <a class="btn btn-primary" [routerLink]="['/play']">Play again</a>
+    </div>
+</div>

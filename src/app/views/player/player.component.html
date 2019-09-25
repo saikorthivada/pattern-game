@@ -1,0 +1,30 @@
+<div class="container-fluid mt-5 p-l-50 p-r-50">
+  <div class="text-center">
+    <p>Level: {{level}} </p>
+    <p>Result pattern should be of length: {{level + 4}} </p>
+  </div>
+  <div class="d-flex justify-content-between">
+    <div class="red text-center p-t-30" [ngClass]="currentValue === 1 ? 'border-black' : 'border-white'">
+      1
+    </div>
+    <div class="green text-center p-t-30" [ngClass]="currentValue === 2 ? 'border-black' : 'border-white'">
+      2
+    </div>
+    <div class="blue text-center p-t-30" [ngClass]="currentValue === 3 ? 'border-black' : 'border-white'">
+      3
+    </div>
+    <div class="yellow text-center p-t-30" [ngClass]="currentValue === 4 ? 'border-black' : 'border-white'">
+      4
+    </div>
+  </div>
+  <div class="text-center m-t-50">
+    <button class="btn btn-primary btn-lg" (click)="gameStarted('play')" *ngIf="isGameStarted">Play</button> &nbsp;
+    <button class="btn btn-primary btn-lg" (click)="tryAgain('try')" *ngIf="isTryAgain">Try again</button>
+  </div>
+  <div>
+    <ng-container *ngIf="isTryAgain">
+      <app-svsudo-verify-otp title="Result" subTitle="Enter the sequence {{arr.length}} moment of square boxes"
+        buttonLabel="Submit Pattern" [digitsOfOTP]="arr.length" (OTPSubmit)="patternSubmit($event)"></app-svsudo-verify-otp>
+    </ng-container>
+  </div>
+</div>

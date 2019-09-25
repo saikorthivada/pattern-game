@@ -1,0 +1,30 @@
+<!-- <app-bread-crumb title="CUSTOMER'S LOGIN" [inactiveNavs]="inactiveNavs" activeNav="LOGIN"></app-bread-crumb> -->
+<div>
+  <div class="row">
+    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+      <div class="card card-signin my-5">
+        <div class="card-body">
+          <div class="otp-section">
+            <h5 class="card-title text-center">{{title}}</h5>
+            <p class="text-center font-size-14">
+              {{subTitle}}
+            </p>
+            <form [formGroup]="OTPForm" (ngSubmit)="OTPSubmited()">
+              <div class="otp d-flex m-b-15" formArrayName="OTPFields">
+                <ng-container *ngFor="let OTPField of OTPForm.get('OTPFields')['controls']; let i = index">
+                  <ng-container [formGroupName]="i">
+                    <input class="form-control" placeholder="0" appMoveNextByMaxLength maxlength="1" formControlName="OTPNumber" />
+                  </ng-container>
+                </ng-container>
+              </div>
+              <br>
+              <button type="submit" class="btn btn-primary btn-block text-uppercase" [disabled]="OTPForm.invalid">{{buttonLabel}}</button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
